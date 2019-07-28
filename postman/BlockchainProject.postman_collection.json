@@ -1,0 +1,167 @@
+{
+	"info": {
+		"_postman_id": "24399678-889d-4e1b-84a0-eda4f2eb3bd6",
+		"name": "BlockchainProject",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "localhost:8080/blockencripted",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "blockchain",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "blockchain",
+							"type": "string"
+						}
+					]
+				},
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"recepcion\": {\n\t\t\"nombre\":\"sebastian\",\n\t    \"apellido\":\"valdes\",\n\t    \"rut\":17463810,\n\t    \"dvRut\": 1,\n\t    \"numeroCuenta\": 123456789,\n\t    \"tipoCuenta\":\"C\", \n\t    \"idBanco\":\"BBVA\",\n\t    \"correo\":\"sebastian.valdes.contreras@gmail.com\",\n\t    \"monto\":10000,\n\t    \"moneda\":\"CLP\"\n\t},\n\t\"emision\": {\n\t\t\"nombre\":\"juanito\",\n\t    \"apellido\":\"perez\",\n\t    \"rut\":18463805,\n\t    \"dvRut\": 1,\n\t    \"numeroCuenta\": 123456789,\n\t    \"tipoCuenta\":\"C\",\n\t    \"idBanco\":\"BBVA\",\n\t    \"correo\":\"juanito.perez@gmail.com\",\n\t    \"monto\":10000,\n\t    \"moneda\":\"CLP\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/blockencripted",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blockencripted"
+					]
+				},
+				"description": "Metodo para insertar un bloque a la cadena de bloques en formato JSON con encriptacion en RSA, convertido a QR."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/blockchain",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "blockchain",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "blockchain",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/blockchain",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blockchain"
+					]
+				},
+				"description": " Metodo para eliminar toda la cadena de bloques ingresada."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/block",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "blockchain",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "blockchain",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"emisor\": {\n\t\t\"nombre\":\"sebastian\",\n\t\t\"rut\": 17463810,\n\t\t\"digito\":1,\n\t\t\"apellido\":\"valdes\",\n\t\t\"cuenta\":\"123456789\",\n\t\t\"email\":\"sebastian.valdes.contreras@gmail.com\",\n\t\t\"monto\": 10000,\n\t\t\"comentarios\": \"prueba de emisor\"\n\t},\n\t\"receptor\" : {\n\t\t\"nombre\":\"nicolas\",\n\t\t\"rut\": 19601946,\n\t\t\"digito\":4,\n\t\t\"apellido\":\"valdes\",\n\t\t\"cuenta\":\"987654321\",\n\t\t\"email\":\"alenionss@gmail.com\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/block",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"block"
+					]
+				},
+				"description": "Envia una bloque a la cadena de bloques."
+			},
+			"response": []
+		},
+		{
+			"name": "localhost:8080/blockchain",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "blockchain",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "blockchain",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:8080/blockchain",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blockchain"
+					]
+				},
+				"description": "Obtiene toda la cadena de bloques."
+			},
+			"response": []
+		}
+	]
+}
