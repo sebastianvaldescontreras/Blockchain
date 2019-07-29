@@ -73,6 +73,46 @@ qrController.put('/blockencripted', async (request, response) => {
 });
 
 //--------------------------------------------------------------------------------------------------------
+//Metodo post para enviar datos en formato json a QR dentro de cadena de bloques. 
+qrController.post('/blockqr', async (request, response) => {
+  //1. Convierto el contenido de la peticion a string.
+  var requestJsonText = JSON.stringify(request.body);
+  //2. Valido que el contenido no tenga mas de 4296 caracteres.
+  if (requestJsonText.length > 4296 || !contentValidate(requestJsonText)) {
+    response.status(400);
+    response.send('');
+  }
+  //3. Convierto la peticion a QR.
+  var contenido = await getQrWithContentRsa(requestJsonText);
+  //4.Obtengo la Cadena guardada si es que existe
+  var chain = await blockChainRepository.getBlockChainAsync();
+  //4. Si existe inicializo con la cadena de base de datos
+  //console.log(chain);
+  if(chain !== undefined){
+    blockchainController = new BlockchainController(chain.chain);
+    index = chain.chain[chain.chain.length - 1].index;
+  }else{
+    blockchainController = new BlockchainController();
+  }
+  index = index + 1;
+  //console.log(JSON.stringify(blockchainController, null, 4));
+  //5.Creo un objeto de BlockDto para guardar contenido RSA en JSON. 
+  const blockDto = new BlockDto(index, new Date(), { contenido });
+  //6.Agrego el bloque a la cadena
+  blockchainController.addBlock(blockDto);
+  //7.Persistencia del bloque
+  await blockChainRepository.putBlockAsync(blockchainController);
+  //8.valido la cadena de bloques.
+  if(blockchainController.checkValid(blockchainController)){
+    response.status(200);
+    response.send({insertBlock: true});
+  }else{
+    response.status(400)
+    response.status({error: 'Blockchain Invalida! '});
+  }   
+});
+
+//--------------------------------------------------------------------------------------------------------
 //Metodo para obtener las llaves publica y privada de RSA. 
 qrController.post('/keys', (request, response) => {
   RSA.generateKeypair(options, function (err, keypair) {

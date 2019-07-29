@@ -162,6 +162,50 @@
 				"description": "Obtiene toda la cadena de bloques."
 			},
 			"response": []
+		},
+		{
+			"name": "localhost:8080/blockqr",
+			"request": {
+				"auth": {
+					"type": "basic",
+					"basic": [
+						{
+							"key": "password",
+							"value": "blockchain",
+							"type": "string"
+						},
+						{
+							"key": "username",
+							"value": "blockchain",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"name": "Content-Type",
+						"value": "application/json",
+						"type": "text"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"emisor\": {\n\t\t\"nombre\":\"pedro\",\n\t\t\"rut\": 17463810,\n\t\t\"digito\":1,\n\t\t\"apellido\":\"valdes\",\n\t\t\"cuenta\":\"123456789\",\n\t\t\"email\":\"sebastian.valdes.contreras@gmail.com\",\n\t\t\"monto\": 10000,\n\t\t\"comentarios\": \"prueba de emisor\"\n\t},\n\t\"receptor\" : {\n\t\t\"nombre\":\"nicolas\",\n\t\t\"rut\": 19601946,\n\t\t\"digito\":4,\n\t\t\"apellido\":\"valdes\",\n\t\t\"cuenta\":\"987654321\",\n\t\t\"email\":\"alenionss@gmail.com\"\n\t}\n}"
+				},
+				"url": {
+					"raw": "localhost:8080/blockqr",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"blockqr"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
