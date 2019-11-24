@@ -1,5 +1,5 @@
 var BlockDto = require('../dto/BlockDto');
-var SaveController = require('./BlockChainRepository');
+var SaveController = require('../repository/BlockChainRepository');
 let saveController = new SaveController();
 module.exports = class BlockchainController {
     constructor(chain) {

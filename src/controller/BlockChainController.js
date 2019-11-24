@@ -3,8 +3,8 @@ const basicAuth = require('express-basic-auth')
 const qrcode = require('qrcode');
 var RSA = require('rsa-compat').RSA;
 var qrService = require('../service/RsaService');
-var BlockchainController = require('./BlockChainService');
-var BlockChainRepository = require('./BlockChainRepository');
+var BlockchainController = require('../service/BlockChainService');
+var BlockChainRepository = require('../repository/BlockChainRepository');
 var BlockDto = require('../dto/BlockDto');
 var options = { bitlen: 1024, exp: 65537, public: true, pem: true, internal: true };
 const qrController = express();
@@ -37,10 +37,10 @@ qrController.put('/blockencripted', async (request, response) => {
   //4. Encripto el JSON en RSA.
   var encrypted = qrService.encryptValue(requestJsonText);
   //5. Muestro el RSA.
-  //console.log(encrypted);
+  console.log(encrypted);
   //6. Desencripto el RSA para revisar el JSON ingresado.
   var decrypt = qrService.decryptValue(encrypted);
-  //console.log(decrypt);
+  console.log(decrypt);
   //7. Convierto contenido a RSA.
   var contenido = await getQrWithContentRsa(encrypted);
   //console.log(contenido);
